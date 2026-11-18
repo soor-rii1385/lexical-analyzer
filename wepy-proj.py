@@ -3,47 +3,53 @@ def scanner(code.wepy):
     state=0
     keywords = {"let","show","for","while","input"}
     ch = code.wepy.read(1)
+    x=[]
     while True :
         switch(state)
             case 0:
-                
                 for keyword in keywords:
-                    for i=0 in keyword: 
-                        if ch == keyword[i]:
-                            i++
-                        else
-                            keyword++
-                    state=0
-                    print("keyword:" keywords[keyword])
-                else:
+                    if len(ch) == len(keyword):
+                        for j in range(len(keyword)):
+                            for i in range(len(ch)):
+                                if ch[i]==keyword[j]:
+                                    continue
+                                else:
+                                    break
+                                i+=1
+                            j+=1
+                        if word==keyword: 
+                            x.append(keyword) 
+                    continue
+                if len(x)> 0 :
                     state=1
-            case 1:
-
-                if 'a'<= ch <= 'z' or 'A'<= ch <= 'Z':
-                    state =2
+                    print(f"word is keyword: {x}")
                 else:
-                    state=3
-                    return 1
-            case 2:
-                if 'a'<= ch <= 'z' or 'A'<= ch <= 'Z'or 0<= ch <=9:
+                    print("No keyword")
                     state=2
-                    print ("identifier:"{ch})
+            case 2:
+                if 'a'<= ch <= 'z' or 'A'<= ch <= 'Z':
+                    state =3
                 else:
-                    state=3
-                    return 1
-            case 3:
-                if (0<= ch <=9):
                     state=4
-                    
-                    
+            case 3:
+                if 'a'<= ch <= 'z' or 'A'<= ch <= 'Z'or 0<= ch <=9:
+                    state=3
+                    print (f"identifier:{ch}")
+                else:
+                    state=4
+                    return 1
+            case 4:
+                if (0<= ch <=9):
+                    state=4 
                 else:
                     state = 5
                     return 1
             case 4:
-                if 0<= ch <=9 :
-                    state=4
-                    print("intiger:")
-                print ("int:")
+                for i in ch:
+                    if 0<= ch <=9 :
+                        state=4
+                        continue
+                        print("intiger:")
                 else :
                     state=5
             case 5:
