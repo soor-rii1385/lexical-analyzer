@@ -1,7 +1,7 @@
 #lexical analyzer
 def scanner(file):
     keywords = ["let","show","for","while","input","if","else","elif","then","end","do"]
-    word = ""
+    token = ""
     state = 0
     while True :
         ch = file.read(1)
@@ -11,12 +11,12 @@ def scanner(file):
             for i in range(len(keywords)):
                 for j in range(len(keywords[i])):
                     if ch == keywords[i][j]:          
-                        word += ch
+                        token += ch
                     else:
-                        word = ""
+                        token = ""
                         break
-            if word == keywords[i]:  
-                print(f"{word}: keyword")
+            if token == keywords[i]:  
+                print(f"{token}: keyword")
             else:
                 state=1
                     # case 1:
