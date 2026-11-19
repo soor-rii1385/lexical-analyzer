@@ -45,8 +45,8 @@ def scanner(file):
                 token +=ch
                 while 0<= ch <=9:
                     state=5
-                    word+= ch 
-                print(f"{word}:Number")
+                    token+= ch 
+                print(f"{token}:Number")
             else:
                 state=6
         if state==6:
