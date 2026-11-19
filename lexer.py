@@ -7,11 +7,19 @@ def scanner(file):
         ch = file.read(1)
         if ch == "":
             break
-        if state == 0:               
+        if state == 0: 
+            print("state 0 running")              
             for i in range(len(keywords)):
                 for j in range(len(keywords[i])):
-                    if ch == keywords[i][j]:          
+                    print(f"cheking char {keywords[i][j]} in {keywords[i]}")
+                    while ch == keywords[i][j]:  
+                        print("ch matches")        
                         token += ch
+                        ch = file.read(1)
+                        print("reading next ch")
+                        i=0
+                        j+=1
+                        break
                     else:
                         token = ""
                         break
@@ -61,12 +69,12 @@ def scanner(file):
                     #     if (ch=='{','}',')','(',':',';',',',)
 
 
-    position = file.tell()  # ذخیرهٔ موقعیت فعلی
-    ch = file.read(1)       # خواندن یک کاراکتر
-    file.seek(position) # برگشت به موقعیت ذخیره‌شده
-    if __name__ == "__main__":
-        with open("main.wepy", "r") as f:
-            scanner(f)
+    # position = file.tell()  # ذخیرهٔ موقعیت فعلی
+    # ch = file.read(1)       # خواندن یک کاراکتر
+    # file.seek(position) # برگشت به موقعیت ذخیره‌شده
+if __name__ == "__main__":
+    with open("main.wepy", "r") as f:
+        scanner(f)
     
             
                     
