@@ -1,4 +1,4 @@
-#lexical analyzer
+
 def scanner(file):
     keywords = ["let","show","for","while","input","if","else","elif","then","end","do"]
     token = ""
