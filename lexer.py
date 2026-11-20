@@ -70,15 +70,9 @@ def scanner(file):
                     token += ch
                     print(f"operator:{token}")
                 elif token== '=' and (ch=='>' or ch=='<'):
-                if (ch == '+' or  ch == '*' or ch == '-' or ch == '='):
-                    if token == ch:
                         state = 8
                         token += ch
                         print(f"{token}: operator")
-                elif token == '=' and (ch == '>' or ch == '<'):
-                    state=8
-                    token += ch
-                    print(f"{token}: operator")
                 print(f"{token}: operator")
             else:
                 state = 10
