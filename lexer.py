@@ -70,21 +70,25 @@ def scanner(file):
                         state = 8
                         token += ch
                         print(f"{token}: operator")
-                print(f"{token } : operator")
+                else:
+                    print(f"{token } : operator")
                 
             else:
                 token = ''
                 state = 10
+
                 
         if state == 10:
             if (ch == '{' , '}' , ')' , '(' , ':' , ';' , ','):
                 state = 11
                 token += ch
-                print(f"{token}: symbol")
+                print(f"{token} : symbol")
+            
+            
 
-            else:
-                token=''
-                state=1
+        else:
+            token=''
+            state=1
 
 if __name__ == "__main__":
         with open("main.wepy", "r") as f:
