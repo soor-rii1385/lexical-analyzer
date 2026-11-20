@@ -86,8 +86,8 @@ def scanner(file):
     # ch = file.read(1)       # خواندن یک کاراکتر
     # file.seek(position) # برگشت به موقعیت ذخیره‌شده
 if __name__ == "__main__":
-    with open("main.wepy", "r") as f:
-        scanner(f)
+        with open("main.wepy", "r") as f:
+            scanner(f)
     
             
                     
