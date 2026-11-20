@@ -83,7 +83,8 @@ def scanner(file):
                 state = 11
                 token += ch
                 print(f"{token} : symbol")
-            
+        
+               
             
 
         else:
