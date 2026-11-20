@@ -30,26 +30,27 @@ def scanner(file):
             else:
                 state = 2
         if state == 2:
-            if 'a'<= ch <= 'z' or 'A'<= ch <= 'Z' or ch=='_':
+            if 'a'<= ch <= 'z' or 'A'<= ch <= 'Z' or ch == '_':
                 state = 2
                 token += ch 
                 ch = file.read(1)
-                while 'a'<= ch <= 'z' or 'A'<= ch <= 'Z' or '0'<= ch <='9' or ch=='_':
-                    state=3
+                while 'a'<= ch <= 'z' or 'A'<= ch <= 'Z' or '0' <= ch <= '9' or ch == '_':
+                    state = 3
                     token += ch
                     ch = file.read(1)
                 print(f"{token}: Identifier")
             else:
-              state=4
+              state = 4
         if state == 4:
-            if 0<= ch <=9:
-                state=5
-                ch = file.read(1)
+            if '0' <= ch <= '9':
+                state = 5
                 token += ch
-                while 0<= ch <=9:
+                ch = file.read(1)
+                while '0' <= ch <= '9':
                     state = 5
-                    token += ch 
-                print(f"{token}:Number")
+                    token += ch
+                    ch = file.read(1)
+                print(f"{token}: Number")
             else:
                 state=6
         if state==6:
