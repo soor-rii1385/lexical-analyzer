@@ -27,47 +27,47 @@ def scanner(file):
                 print(f"{token}: keyword")
             else:
                 state=1
-        if state==1:
-            if 'a'<= ch <= 'z' or 'A'<= ch <= 'Z':
-                state=2
-                token += ch 
-                ch = file.read(1)
-                while 'a'<= ch <= 'z' or 'A'<= ch <= 'Z'or 0<= ch <=9:
-                    state=2
-                    token += ch 
-                 print(f"{word}:Identifier")
-            else:
-              state=4
-        if state==4:
-            if 0<= ch <=9:
-                state=5
-                ch = file.read(1)
-                token +=ch
-                while 0<= ch <=9:
-                    state=5
-                    word+= ch 
-                print(f"{word}:Number")
-            else:
-                state=6
-        if state==6:
-            if (ch=='+' or  ch=='*'or ch=='/' or ch=='-' or ch=='='):
-                if (ch=='+' or  ch=='*'or ch=='-' or ch=='='):
-                    state=6
-                    print("operator:")
-                print("operator:")
-            else:
-                state=6
-                return 1
-        if state==7:
-            if (ch=='{','}',')','(',':',';',',',):
+        # if state==1:
+        #     if 'a'<= ch <= 'z' or 'A'<= ch <= 'Z':
+        #         state=2
+        #         token += ch 
+        #         ch = file.read(1)
+        #         while 'a'<= ch <= 'z' or 'A'<= ch <= 'Z'or 0<= ch <=9:
+        #             state=2
+        #             token += ch 
+        #         print(f"{word}:Identifier")
+        #     else:
+        #       state=4
+        # if state==4:
+        #     if 0<= ch <=9:
+        #         state=5
+        #         ch = file.read(1)
+        #         token +=ch
+        #         while 0<= ch <=9:
+        #             state=5
+        #             word+= ch 
+        #         print(f"{word}:Number")
+        #     else:
+        #         state=6
+        # if state==6:
+        #     if (ch=='+' or  ch=='*'or ch=='/' or ch=='-' or ch=='='):
+        #         if (ch=='+' or  ch=='*'or ch=='-' or ch=='='):
+        #             state=6
+        #             print("operator:")
+        #         print("operator:")
+        #     else:
+        #         state=6
+        #         return 1
+        # if state==7:
+        #     if (ch=='{','}',')','(',':',';',',',):
 
 
     # position = file.tell()  # ذخیرهٔ موقعیت فعلی
     # ch = file.read(1)       # خواندن یک کاراکتر
     # file.seek(position) # برگشت به موقعیت ذخیره‌شده
 if __name__ == "__main__":
-    with open("main.wepy", "r") as f:
-        scanner(f)
+        with open("main.wepy", "r") as f:
+            scanner(f)
     
             
                     
