@@ -8,23 +8,25 @@ def scanner(file):
         if ch == "":
             break
         if state == 0: 
-            print("state 0 running")              
+            print("state 0 running") 
+            first_ch=ch             
             for i in range(len(keywords)):
+                ch=first_ch
                 for j in range(len(keywords[i])):
                     print(f"cheking char {keywords[i][j]} in {keywords[i]}")
-                    while ch == keywords[i][j]:  
+                    while j<keywords[i] and ch == keywords[i][j]:  
                         print("ch matches")        
                         token += ch
                         ch = file.read(1)
                         print("reading next ch")
-                        j+=1
-                        state=1
-                        break
+                    
+                    #bayad ch qabli o bkhune
                     else:
                         token = ""
                         break
             if token == keywords[i]:  
                 print(f"{token}: keyword")
+                
             else:
                 state=2
         if state==2:
@@ -32,10 +34,10 @@ def scanner(file):
                 state=2
                 token += ch 
                 ch = file.read(1)
-                while 'a'<= ch <= 'z' or 'A'<= ch <= 'Z'or 0<= ch <=9:
+                while 'a'<= ch <= 'z' or 'A'<= ch <= 'Z'or '0'<= ch <='9':
                     state=3
                     token += ch 
-                 print(f"{token}:Identifier")
+                print(f"{token}:Identifier")
             else:
               state=4
         if state==4:
