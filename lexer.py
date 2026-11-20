@@ -35,7 +35,7 @@ def scanner(file):
                 while 'a'<= ch <= 'z' or 'A'<= ch <= 'Z'or 0<= ch <=9:
                     state=3
                     token += ch 
-                 print(f"{token}:Identifier")
+                print(f"{token}:Identifier")
             else:
               state=4
         if state==4:
