@@ -14,8 +14,7 @@ def scanner(file):
                 for j in range(len(keywords[i])):
                     print(f"{keywords[i][j]},, {ch}")
                     while  ch == keywords[i][j]:  
-                        print(f"cheking char {keywords[i][j]} in {keywords[i]}")  
-                            
+                        print(f"cheking char {keywords[i][j]} in {keywords[i]}")   
                         token += ch
                         ch = file.read(1)
                         j+=1
@@ -33,29 +32,27 @@ def scanner(file):
                     break
             #az inja be baado dast nazan felan
             else:
-                state = 2
-        if state == 2:
-            if 'a'<= ch <= 'z' or 'A'<= ch <= 'Z' or ch == '_':
-                state = 2
+                state=2
+        if state==2:
+            if 'a'<= ch <= 'z' or 'A'<= ch <= 'Z':
+                state=2
                 token += ch 
                 ch = file.read(1)
-                while 'a'<= ch <= 'z' or 'A'<= ch <= 'Z' or '0' <= ch <= '9' or ch == '_':
-                    state = 3
-                    token += ch
-                    ch = file.read(1)
-                print(f"{token}: Identifier")
+                while 'a'<= ch <= 'z' or 'A'<= ch <= 'Z'or '0'<= ch <='9':
+                    state=3
+                    token += ch 
+                print(f"{token}:Identifier")
             else:
-              state = 4
-        if state == 4:
-            if '0' <= ch <= '9':
-                state = 5
-                token += ch
+              state=4
+        if state==4:
+            if '0'<= ch <='9':
+                state=5
                 ch = file.read(1)
-                while '0' <= ch <= '9':
-                    state = 5
-                    token += ch
-                    ch = file.read(1)
-                print(f"{token}: Number")
+                token +=ch
+                while 0<= ch <=9:
+                    state=5
+                    token+= ch 
+                print(f"{token}:Number")
             else:
                 state=6
         if state==6:
