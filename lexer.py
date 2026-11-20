@@ -26,7 +26,7 @@ def scanner(file):
                         break
             if token == keywords[i]:  
                 print(f"{token}: keyword")
-                
+            #az inja be baado dast nazan felan
             else:
                 state=2
         if state==2:
