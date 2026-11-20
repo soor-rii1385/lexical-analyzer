@@ -12,29 +12,22 @@ def scanner(file):
             print("state 0 running")            
             for i in range(len(keywords)):    
                 for j in range(len(keywords[i])):
-                    print(f"{keywords[i][j]},, {ch}")
                     while  ch == keywords[i][j]:  
-                        print(f"cheking char {keywords[i][j]} in {keywords[i]}")  
-                            
                         token += ch
                         ch = file.read(1)
-                        j+=1
-                        print(f"reading next ch {ch}")
                         break
-                    #bayad ch qabli o bkhune
                     else:
                         token = ""
                         file.seek(pos)
                         ch = file.read(1)
-                        print (f"{ch}")
                         break
                 if token == keywords[i]: 
                     print(f"{token}: keyword")
                     break
-            #az inja be baado dast nazan felan
             else:
                 state = 2
         if state == 2:
+            print("state 2 running")
             if 'a'<= ch <= 'z' or 'A'<= ch <= 'Z' or ch == '_':
                 state = 2
                 token += ch 
@@ -43,7 +36,7 @@ def scanner(file):
                     state = 3
                     token += ch
                     ch = file.read(1)
-                print(f"{token}: Identifier")
+                print(f"{token}: identifier")
             else:
               state = 4
         if state == 4:
