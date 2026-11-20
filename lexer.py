@@ -25,6 +25,7 @@ def scanner(file):
                     print(f"{token}: keyword")
                     break
             else:
+                token = ''
                 state = 2
         if state == 2:
             print("state 2 running")
@@ -34,50 +35,53 @@ def scanner(file):
                 ch = file.read(1)
                 while 'a' <= ch <= 'z' or 'A' <= ch <= 'Z'or '0' <= ch <= '9':
                     state = 3
-                    token += ch 
+                    token += ch
+                    ch = file.read(1) 
                 print(f"{token}: identifier")
             else:
+              token = ''
               state = 4
         if state == 4:
             print("state 4 running")
             if '0' <= ch <= '9':
                 state = 5
-                ch = file.read(1)
                 token += ch
-                while 0<= ch <=9:
+                ch = file.read(1)
+                while '0' <= ch <= '9':
                     state = 5
                     token += ch 
+                    ch = file.read(1)
                 print(f"{token}: number")
             else:
-                token= ''
-                state=6
+                token = ''
+                state = 6
         if state == 6:
             print("state 6 running")
             if (ch == '+' or ch == '=' or ch == '*' or ch == '/' or ch == '-' or ch == '%' or ch == '>' or ch == '<'):
-                token += ch
                 state = 7
+                token += ch
                 ch = file.read(1)
-                if (ch=='+' or  ch=='*'or ch=='-' or ch=='='):
-                    if token== ch:
-                        state=8
+                if (ch == '+' or  ch == '*' or ch == '-' or ch == '='):
+                    if token == ch:
+                        state = 8
                         token += ch
-                        print(f"operator:{token}")
-                elif (token == '+'or token== '-'or token == '!' and ch=='='):
+                        print(f"{token}: operator")
+                elif (token == '+' or token == '-' or token == '!' and ch == '='):
                     state=8
                     token += ch
-                    print(f"operator:{token}")
-                elif token== '=' and (ch=='>' or ch=='<'):
+                    print(f"{token}: operator")
+                elif token == '=' and (ch == '>' or ch == '<'):
                         state = 8
                         token += ch
                         print(f"{token}: operator")
                 print(f"{token}: operator")
             else:
+                token = ''
                 state = 10
-                return 1
         if state == 10:
             print("state 10 running")
-            if (ch=='{','}',')','(',':',';',','):
-                state=11
+            if (ch == '{' , '}' , ')' , '(' , ':' , ';' , ','):
+                state = 11
                 token += ch
                 print(f"{token}: symbol")
         
