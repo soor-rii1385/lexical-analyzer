@@ -54,9 +54,10 @@ def scanner(file):
                     token+= ch 
                 print(f"{token}:Number")
             else:
+                token= ''
                 state=6
         if state==6:
-            if (ch=='+' or ch=='=' or ch=='*' or ch=='/'or ch=='-' or ch=='%' or ch=='>'or ch=='<'):
+            if (ch=='+' or ch=='=' or ch=='*' or ch=='/'or ch=='-'or ch=='!' or ch=='%' or ch=='>'or ch=='<'):
                 token += ch
                 state=7
                 ch = file.read(1)
@@ -65,6 +66,10 @@ def scanner(file):
                         state=8
                         token += ch
                         print(f"operator:{token}")
+                elif (token == '+'or token== '-'or token == '!' and ch=='='):
+                    state=8
+                    token += ch
+                    print(f"operator:{token}")
                 elif token== '=' and (ch=='>' or ch=='<'):
                     state=8
                     token += ch
