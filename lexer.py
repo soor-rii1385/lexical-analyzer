@@ -2,14 +2,13 @@
 def scanner(file):
     keywords = ["let","show","for","while","input","if","else","elif","then","end","do"]
     token = ""
-    state = 0
+    state = 1
     while True :
         pos = file.tell()  
         ch = file.read(1)
         if ch == "":
             break
-        if state == 0: 
-            print("state 0 running")            
+        if state == 1:           
             for i in range(len(keywords)):    
                 for j in range(len(keywords[i])):
                     while  ch == keywords[i][j]:    
@@ -22,13 +21,12 @@ def scanner(file):
                         ch = file.read(1)
                         break
                 if token == keywords[i]: 
-                    print(f"{token}: keyword")
+                    print(f"{token} : keyword")
                     break
             else:
                 token = ''
                 state = 2
         if state == 2:
-            print("state 2 running")
             if 'a' <= ch <= 'z' or 'A' <= ch <= 'Z':
                 state = 2
                 token += ch 
@@ -42,7 +40,6 @@ def scanner(file):
               token = ''
               state = 4
         if state == 4:
-            print("state 4 running")
             if '0' <= ch <= '9':
                 state = 5
                 token += ch
@@ -56,7 +53,6 @@ def scanner(file):
                 token = ''
                 state = 6
         if state == 6:
-            print("state 6 running")
             if (ch == '+' or ch == '=' or ch == '*' or ch == '/' or ch == '-' or ch == '%' or ch == '>' or ch == '<'):
                 state = 7
                 token += ch
@@ -74,18 +70,21 @@ def scanner(file):
                         state = 8
                         token += ch
                         print(f"{token}: operator")
-                print(f"{token}: operator")
+                print(f"{token } : operator")
+                
             else:
                 token = ''
                 state = 10
+                
         if state == 10:
-            print("state 10 running")
             if (ch == '{' , '}' , ')' , '(' , ':' , ';' , ','):
                 state = 11
                 token += ch
                 print(f"{token}: symbol")
-        
-    token=""
+
+            else:
+                token=''
+                state=1
 
 if __name__ == "__main__":
         with open("main.wepy", "r") as f:
