@@ -51,9 +51,6 @@ def scanner(file):
             else:
                 token= ''
                 state=6
-        if state==6:
-            if (ch=='+' or ch=='=' or ch=='*' or ch=='/'or ch=='-'or ch=='!' or ch=='%' or ch=='>'or ch=='<'):
-                state = 6
         if state == 6:
             print("state 6 running")
             if (ch == '+' or ch == '=' or ch == '*' or ch == '/' or ch == '-' or ch == '%' or ch == '>' or ch == '<'):
