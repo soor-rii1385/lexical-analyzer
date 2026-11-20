@@ -17,8 +17,8 @@ def scanner(file):
                         token += ch
                         ch = file.read(1)
                         print("reading next ch")
-                        i=0
                         j+=1
+                        state=1
                         break
                     else:
                         token = ""
@@ -26,16 +26,16 @@ def scanner(file):
             if token == keywords[i]:  
                 print(f"{token}: keyword")
             else:
-                state=1
-        if state==1:
+                state=2
+        if state==2:
             if 'a'<= ch <= 'z' or 'A'<= ch <= 'Z':
                 state=2
                 token += ch 
                 ch = file.read(1)
                 while 'a'<= ch <= 'z' or 'A'<= ch <= 'Z'or 0<= ch <=9:
-                    state=2
+                    state=3
                     token += ch 
-                 print(f"{word}:Identifier")
+                 print(f"{token}:Identifier")
             else:
               state=4
         if state==4:
@@ -50,16 +50,34 @@ def scanner(file):
             else:
                 state=6
         if state==6:
-            if (ch=='+' or  ch=='*'or ch=='/' or ch=='-' or ch=='='):
+            if (ch=='+' or ch=='=' or ch=='*' or ch=='/'or ch=='-' or ch=='%' or ch=='>'or ch=='<'):
+                token += ch
+                state=7
+                ch = file.read(1)
                 if (ch=='+' or  ch=='*'or ch=='-' or ch=='='):
-                    state=6
-                    print("operator:")
-                print("operator:")
+                    if token== ch:
+                        state=8
+                        token += ch
+                        print(f"operator:{token}")
+                elif token== '=' and (ch=='>' or ch=='<'):
+                    state=8
+                    token += ch
+                    print(f"operator:{token}")
+                print(f"operator:{token}")
             else:
-                state=6
+                state=10
                 return 1
-        if state==7:
-            if (ch=='{','}',')','(',':',';',',',):
+        if state==10:
+            if (ch=='{','}',')','(',':',';',','):
+                state=11
+                token += ch
+                print(f"symbol:{token}")
+            else:
+                break
+        
+    token=""
+
+                
 
 
     # position = file.tell()  # ذخیرهٔ موقعیت فعلی
