@@ -8,7 +8,9 @@ def scanner(file):
         ch = file.read(1)
         if ch == "":
             break
-        if state == 1:           
+        if ch == ' ':
+            print("saw space")
+        if state == 1:    
             for i in range(len(keywords)):    
                 for j in range(len(keywords[i])):
                     while  ch == keywords[i][j]:    
@@ -21,21 +23,30 @@ def scanner(file):
                         ch = file.read(1)
                         break
                 if token == keywords[i]: 
-                    print(f"{token} : keyword")
+                    print(f"{token}: keyword")
                     break
             else:
                 token = ''
                 state = 2
         if state == 2:
             if 'a' <= ch <= 'z' or 'A' <= ch <= 'Z':
-                state = 2
+                state = 3
                 token += ch 
+                print(f"read {ch} ")
                 ch = file.read(1)
+                print(f"read {ch} ")
+
                 while 'a' <= ch <= 'z' or 'A' <= ch <= 'Z'or '0' <= ch <= '9':
                     state = 3
                     token += ch
-                    ch = file.read(1) 
-                print(f"{token}: identifier")
+                    ch = file.read(1)
+                    print(f"read {ch} ")
+                    break
+                else:
+                    print(f"{token}: identifier")
+                    token=''
+                    state=4
+
             else:
               token = ''
               state = 4
@@ -67,29 +78,35 @@ def scanner(file):
                     token += ch
                     print(f"{token}: operator")
                 elif token == '=' and (ch == '>' or ch == '<'):
-                        state = 8
-                        token += ch
-                        print(f"{token}: operator")
+                    state = 8
+                    token += ch
+                    print(f"{token}: operator")
                 else:
                     print(f"{token } : operator")
-                
             else:
                 token = ''
                 state = 10
-
-                
         if state == 10:
-            if (ch == '{' , '}' , ')' , '(' , ':' , ';' , ','):
+            if (ch == '{' or ch == '}' or ch== ')' or ch=='(' or ch==':' or ch==';' or ch==','):
                 state = 11
                 token += ch
                 print(f"{token} : symbol")
-        
-               
-            
+                ch = file.read(1)
+                print(f"{ch}")
 
+            else:
+                token = ''
+                state = 1
+                print(f"{ch}")
+        # if state == 12:
+        #     print("state 12 running")
+        #     while ch == ' ':
+        #         print("saw space")
+        #         ch = file.read(1)
+        #     state = 1
         else:
-            token=''
-            state=1
+            token = ''
+            state = 1
 
 if __name__ == "__main__":
         with open("main.wepy", "r") as f:
