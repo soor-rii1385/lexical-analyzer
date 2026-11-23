@@ -87,13 +87,15 @@ def scanner(file):
                 token = ''
                 state = 10
         if state == 10:
-            if (ch == '{' or ch == '}' or ch== ')' or ch=='(' or ch==':' or ch==';' or ch==','):
+            if (ch == '{' or ch=='(' or ch==':' or ch==';' or ch==','):
                 state = 11
                 token += ch
                 print(f"{token} : symbol")
                 ch = file.read(1)
-                print(f"{ch}")
-
+                if (ch== ')'or ch == '}' ):
+                    token=''
+                    token+= ch
+                    print(f"{token} : symbol")
             else:
                 token = ''
                 state = 1
