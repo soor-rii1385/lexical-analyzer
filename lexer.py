@@ -80,10 +80,7 @@ def scanner(file):
                     print(f"{token}: operator")
                 elif(token== '+' or token == '=' or token == '*' or token== '/' or token == '-' or token== '%' or token == '>' or token == '<'):
                     print(f"{token }: operator")
-                    print(f"{ch}bayad sefrr bSHAD")
-            file.seek(pos)
-            ch = file.read(1)
-                         
+                file.seek(pos)          
             else:
                 token = ''
                 state = 10
