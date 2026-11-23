@@ -32,25 +32,20 @@ def scanner(file):
             if 'a' <= ch <= 'z' or 'A' <= ch <= 'Z':
                 state = 3
                 token += ch 
-                print(f"read {ch} ")
                 ch = file.read(1)
-                print(f"read {ch} ")
-
                 while 'a' <= ch <= 'z' or 'A' <= ch <= 'Z'or '0' <= ch <= '9':
                     state = 3
                     token += ch
                     ch = file.read(1)
-                    print(f"read {ch} ")
                     break
                 else:
                     print(f"{token}: identifier")
                     token=''
                     state=4
-
             else:
               token = ''
               state = 4
-        if state == 4:
+        if state == 4:  
             if '0' <= ch <= '9':
                 state = 5
                 token += ch
@@ -67,13 +62,15 @@ def scanner(file):
             if (ch == '+' or ch == '=' or ch == '*' or ch == '/' or ch == '-' or ch == '%' or ch == '>' or ch == '<'):
                 state = 7
                 token += ch
+                pos = file.tell() 
                 ch = file.read(1)
+                print(f"ch mibinm{ch}")
                 if (ch == '+' or  ch == '*' or ch == '-' or ch == '='):
                     if token == ch:
                         state = 8
                         token += ch
                         print(f"{token}: operator")
-                elif (token == '+' or token == '-' or token == '!' and ch == '='):
+                elif ch == '=' and token in ('+', '-', '!'):
                     state=8
                     token += ch
                     print(f"{token}: operator")
@@ -81,8 +78,12 @@ def scanner(file):
                     state = 8
                     token += ch
                     print(f"{token}: operator")
-                else:
-                    print(f"{token } : operator")
+                elif(token== '+' or token == '=' or token == '*' or token== '/' or token == '-' or token== '%' or token == '>' or token == '<'):
+                    print(f"{token }: operator")
+                    print(f"{ch}bayad sefrr bSHAD")
+            file.seek(pos)
+            ch = file.read(1)
+                         
             else:
                 token = ''
                 state = 10
