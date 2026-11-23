@@ -1,1 +1,15 @@
-let  v+0   :
+let age = 20;
+show age;
+x == 10
+x != 10
+x > 10
+x < 10
+x >= 10    ;
+x <= 10    ;
+let i = 1;
+while i <= 10 do
+if i % 2 == 0 then
+show i;
+end
+i = i + 1;
+end

@@ -30,6 +30,8 @@ def scanner(file):
                 state = 2
         if state == 2:
             if 'a' <= ch <= 'z' or 'A' <= ch <= 'Z':
+                if ch=="x":
+                    print ("kn b mn bgooooooooooooooooooooooo")
                 state = 3
                 token += ch 
                 ch = file.read(1)
@@ -37,7 +39,7 @@ def scanner(file):
                     state = 3
                     token += ch
                     ch = file.read(1)
-                    break
+                    
                 else:
                     print(f"{token}: identifier")
                     token=''
@@ -61,25 +63,25 @@ def scanner(file):
         if state == 6:
             if (ch == '+' or ch == '=' or ch == '*' or ch == '/' or ch == '-' or ch == '%' or ch == '>' or ch == '<'):
                 state = 7
-                token += ch
+                token+=ch
                 pos = file.tell() 
-                ch = file.read(1)
-                print(f"ch mibinm{ch}")
+                ch = file.read(1)                
                 if (ch == '+' or  ch == '*' or ch == '-' or ch == '='):
                     if token == ch:
                         state = 8
                         token += ch
                         print(f"{token}: operator")
-                elif ch == '=' and token in ('+', '-', '!'):
-                    state=8
-                    token += ch
-                    print(f"{token}: operator")
+                    elif ch == '=' and token in ('+', '-', '!'):
+                        state=8
+                        token += ch
+                        print(f"{token}: operator")
                 elif token == '=' and (ch == '>' or ch == '<'):
                     state = 8
                     token += ch
                     print(f"{token}: operator")
-                elif(token== '+' or token == '=' or token == '*' or token== '/' or token == '-' or token== '%' or token == '>' or token == '<'):
-                    print(f"{token }: operator")
+                elif state==7:
+                    if(token== '+' or token == '=' or token == '*' or token== '/' or token == '-' or token== '%' or token == '>' or token == '<'):
+                        print(f"{token }: operator")
                 file.seek(pos)          
             else:
                 token = ''
@@ -97,13 +99,6 @@ def scanner(file):
             else:
                 token = ''
                 state = 1
-                print(f"{ch}")
-        # if state == 12:
-        #     print("state 12 running")
-        #     while ch == ' ':
-        #         print("saw space")
-        #         ch = file.read(1)
-        #     state = 1
         else:
             token = ''
             state = 1
