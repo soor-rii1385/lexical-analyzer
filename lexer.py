@@ -20,18 +20,18 @@ def scanner(file):
                     else:
                         token = ""
                         file.seek(pos)
-                        ch = file.read(1)
-                        break
+                        ch = file.read(1)                                                                                  
+                       
                 if token == keywords[i]: 
                     print(f"{token}: keyword")
+                    if ch== ' ':
+                        print("saw space")
                     break
             else:
                 token = ''
-                state = 2
+                state=2
         if state == 2:
             if 'a' <= ch <= 'z' or 'A' <= ch <= 'Z':
-                if ch=="x":
-                    print ("kn b mn bgooooooooooooooooooooooo")
                 state = 3
                 token += ch 
                 ch = file.read(1)
@@ -42,8 +42,9 @@ def scanner(file):
                     
                 else:
                     print(f"{token}: identifier")
-                    token=''
-                    state=4
+                    if ch== ' ':
+                        print("saw space")
+                    
             else:
               token = ''
               state = 4
@@ -54,12 +55,16 @@ def scanner(file):
                 ch = file.read(1)
                 while '0' <= ch <= '9':
                     state = 5
-                    token += ch 
+                    token += ch
+                    pos = file.tell()   
                     ch = file.read(1)
                 print(f"{token}: number")
+               
             else:
                 token = ''
                 state = 6
+                file.seek(pos)
+                ch = file.read(1)
         if state == 6:
             if (ch == '+' or ch == '=' or ch == '*' or ch == '/' or ch == '-' or ch == '%' or ch == '>' or ch == '<'):
                 state = 7
@@ -86,7 +91,7 @@ def scanner(file):
             else:
                 token = ''
                 state = 10
-        if state == 10:
+        if state == 10: 
             if (ch == '{' or ch=='(' or ch==':' or ch==';' or ch==','):
                 state = 11
                 token += ch
